@@ -1,8 +1,8 @@
-package com.cstzju.poker;
+package com.cstzju.poker.game;
 
 import java.util.Comparator;
 
-import com.cstzju.poker.Card.Flower;
+import com.cstzju.poker.game.Card.Flower;
 
 //比较牌面排列大小的比较器
 public class CardComparator implements Comparator<Card> {

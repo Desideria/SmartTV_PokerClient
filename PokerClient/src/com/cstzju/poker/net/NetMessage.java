@@ -92,20 +92,20 @@ public class NetMessage {
 	 * @throws IOException
 	 */
 	public void toStream(OutputStream stream) throws IOException {
-		// Log.i("test", "HEAD:" + HEAD);
+		Log.i("test", "HEAD:" + HEAD);
 		stream.write(HEAD);
-		// Log.i("test", time + "");
+		Log.i("test", time + "");
 		stream.write(Converter.TimeToBytes(time));
-		// Log.i("test", "cmd:" + cmd);
+		Log.i("test", "cmd:" + cmd);
 		stream.write(cmd);
-		// Log.i("test", "len:" + len);
+		Log.i("test", "len:" + len);
 		stream.write(len);
 		if (len > 0) {
 			Log.i("test", "data:" + Converter.BytesToString(data));
 			stream.write(data);
 		}
 		stream.write(computeVerify());
-		// Log.i("test", "check:" + computeVerify());
+		Log.i("test", "check:" + computeVerify());
 	}
 
 	/**

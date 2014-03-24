@@ -1,4 +1,4 @@
-package com.cstzju.poker;
+package com.cstzju.poker.game;
 
 //枚举所有的牌型
 public enum CardType {

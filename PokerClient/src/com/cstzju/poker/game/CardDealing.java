@@ -1,4 +1,4 @@
-package com.cstzju.poker;
+package com.cstzju.poker.game;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,11 +1,13 @@
-package com.cstzju.poker;
+package com.cstzju.poker.game;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import com.cstzju.poker.Card.Flower;
-import com.cstzju.poker.Card.Number;
+import com.cstzju.poker.R;
+import com.cstzju.poker.R.drawable;
+import com.cstzju.poker.game.Card.Flower;
+import com.cstzju.poker.game.Card.Number;
 
 
 //关于扑克牌的帮助类

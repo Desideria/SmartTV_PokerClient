@@ -2,11 +2,18 @@ package com.cstzju.poker;
 
 import java.util.ArrayList;
 
+import com.cstzju.poker.game.Card;
+import com.cstzju.poker.game.CardType;
+import com.cstzju.poker.game.GameRule;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +23,9 @@ public class Player {
 	Context context;
 	public ArrayList<Card> cards = new ArrayList<Card>(20);
 	public ArrayList<Card> myCards = new ArrayList<Card>(7);
-	private ArrayList<Card> preCards = new ArrayList<Card>(7);
-	private Card card1 = new Card(1);
+	public ArrayList<Card> preCards = new ArrayList<Card>(7);
+	
+	boolean isWinner = false;
 	
 	Rect src = new Rect(0,0,200,280);
 	Rect dst = new Rect();
@@ -27,14 +35,6 @@ public class Player {
 	
 	private Player(Context context) {
 		this.context = context;
-		for(int i=1;i<=20;++i) {
-			 card1 = new Card(i);
-			 this.cards.add(card1);
-		 }
-		 for(int i=3;i<8;++i) {
-			 card1 = new Card(i);
-			 this.preCards.add(card1);
-		 }
 	}
 	
 	public static Player getInstance(Context context) {
@@ -47,6 +47,15 @@ public class Player {
 	
 	
 	public void draw(Canvas canvas) {
+		if(player.win()) {
+//			Bitmap cardBitmap = BitmapFactory.decodeResource(context.getResources(), );
+//			dst.set(left, top, right, bottom)
+//			canvas.drawBitmap(bitmap, src, dst, null);
+			Paint paint = new Paint();
+			paint.setTextSize(75);//设置字体大小
+			paint.setColor(Color.WHITE);
+			canvas.drawText("You Win!", 200, 100, paint);
+		}
 		for(int i=0;i<cards.size();++i) {
 			Bitmap cardBitmap = BitmapFactory.decodeResource(context.getResources(), cards.get(i).picID);
 			int distance = 0;
@@ -80,7 +89,19 @@ public class Player {
 	public boolean chupai() {
 		CardType mCardType = GameRule.getCardType(myCards);
 		CardType preCardType = GameRule.getCardType(preCards);
+		
+//		if(cards.size()==20 && mCardType!=null) {
+		if(mCardType!=null) {
+			return true;
+		} 
 		return GameRule.isOvercomePrev(myCards, mCardType, preCards, preCardType);
+	}
+	
+	public boolean win() {
+		if(myCards.size()==0 && isWinner) {
+			return true;
+		}
+		return false;
 	}
 	
 }

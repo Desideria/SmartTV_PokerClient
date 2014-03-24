@@ -37,7 +37,7 @@ OnTouchListener {
 	}
 	
 	public PokerView(Context context, AttributeSet attrs) {
-		super(context);
+		super(context, attrs);
 		this.context = context;
 		this.player = Player.getInstance(context);
 		this.getHolder().addCallback(this);
@@ -80,6 +80,11 @@ OnTouchListener {
 		}else {
 			Message message = new Message();
 			message.what = 1;
+			((MainActivity)context).handler.sendMessage(message);
+		}
+		if(player.win()) {
+			Message message = new Message();
+			message.what = 2;
 			((MainActivity)context).handler.sendMessage(message);
 		}
 	}

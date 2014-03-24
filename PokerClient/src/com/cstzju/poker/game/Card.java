@@ -1,4 +1,4 @@
-package com.cstzju.poker;
+package com.cstzju.poker.game;
 
 
 public class Card {
